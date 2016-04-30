@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Flat Select</title>
+    <link rel="stylesheet" href="./style.css" type="text/css" media="all" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, width=device-width, height=device-height"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style type="text/css" media="screen">
+      #form {
+        width: 600px;
+        font-size: 12px;
+      }
+      .form-group {
+        margin: 0;
+        line-height: 2.6em;
+      }
+      .form-group::after {
+        display: table;
+        content: '';
+        clear: both;
+      }
+      .form-group > div {
+        float: left;
+        width: 33.333%;
+      }
+      .select-item {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .select-item > div:first-child {
+        padding-right: 30px;
+        border: none;
+        outline: none;
+        text-indent: 1em;
+        height: 2.6em;
+      }
+      .select-item > div:first-child:empty:not(:focus):before {
+        color: #ccc;
+        content: attr(data-ph);
+        text-align: right;
+        width: 80%;
+        display: block;
+      }
+      .select-item .select-icon {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        width: 20px;
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjkgMTI5Ij48cGF0aCBkPSJNMTIxLjMgMzQuNmMtMS42LTEuNi00LjItMS42LTUuOCAwbC01MSA1MS4xLTUxLjEtNTEuMWMtMS42LTEuNi00LjItMS42LTUuOCAwLTEuNiAxLjYtMS42IDQuMiAwIDUuOGw1My45IDUzLjljLjguOCAxLjggMS4yIDIuOSAxLjIgMSAwIDIuMS0uNCAyLjktMS4ybDUzLjktNTMuOWMxLjctMS42IDEuNy00LjIuMS01Ljh6Ii8+PC9zdmc+);
+        background-position: center;
+        background-size: 12px 12px;
+        background-repeat: no-repeat;
+        transition: all 0.3s linear;
+      }
+      .select-item .select-reset {
+        position: absolute;
+        top: 0px;
+        right: 20px;
+        bottom: 0px;
+        width: 20px;
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNSAyNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+U2xpY2UgMTwvdGl0bGU+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiM0QTRBNEEiPjxlbGxpcHNlIGN4PSIxMi4xNDUiIGN5PSIxMi4yNzkiIHJ4PSIxMi4xNDUiIHJ5PSIxMi4yNzkiLz48cGF0aCBkPSJNNi44MiA2Ljk1NWwxMC42NSAxMC42NU0xNy40NyA3LjE0Mkw2LjgyIDE3LjkwOCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIi8+PC9nPjwvc3ZnPg==);
+        background-position: center;
+        background-size: 12px 12px;
+        background-repeat: no-repeat;
+        transition: all 0.3s linear;
+        opacity: 0;
+      }
+      .select-item:hover .select-reset {
+        opacity: 1;
+      }
+      .select-item.active .select-icon {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form id="form">
+        <input type="hidden" name="province" value="110000">
+        <input type="hidden" name="city">
+        <input type="hidden" name="district">
+        <div class="form-group">
+          <div class="select-item">
+            <div data-ph="省"></div>
+            <div class="select-reset"></div>
+            <div class="select-icon"></div>
+          </div>
+          <div class="select-item">
+            <div data-ph="市"></div>
+            <div class="select-reset"></div>
+            <div class="select-icon"></div>
+          </div>
+          <div class="select-item">
+            <div data-ph="县"></div>
+            <div class="select-reset"></div>
+            <div class="select-icon"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="./bundle.js" type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>
