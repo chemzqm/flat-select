@@ -1,0 +1,73 @@
+{
+  "name": "flat-select",
+  "version": "0.0.1",
+  "description": "Select ui component build for lightweight & simplicity",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test-coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/chemzqm/flat-select.git"
+  },
+  "keywords": ["select", "selectable"],
+  "author": "chemzqm@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chemzqm/flat-select/issues"
+  },
+  "homepage": "https://github.com/chemzqm/flat-select#readme",
+  "devDependencies": {
+    "coveralls": "^2.11.4",
+    "css-loader": "^0.23.0",
+    "expect": "^1.13.0",
+    "file-loader": "^0.8.5",
+    "growl": "^1.8.1",
+    "gulp": "^3.9.0",
+    "gulp-live-serve": "^1.0.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-util": "^3.0.7",
+    "html-loader": "^0.4.0",
+    "html5shiv": "^3.7.3",
+    "istanbul": "^0.4.0",
+    "istanbul-instrumenter-loader": "^0.2.0",
+    "json-loader": "^0.5.3",
+    "karma": "^0.13.15",
+    "karma-cli": "^0.1.2",
+    "karma-coverage": "^0.5.3",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-mocha": "^0.2.0",
+    "karma-webpack": "^1.7.0",
+    "karma-wrap-preprocessor": "^0.1.0",
+    "mocha": "^2.3.3",
+    "mocha-loader": "^0.7.1",
+    "mocha-notify": "0.0.4",
+    "stack-source-map": "^1.0.4",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.12.6",
+    "webpack-dev-server": "^1.12.1"
+  },
+  "dependencies": {
+    "component-align": "0.0.1",
+    "component-classes": "^1.2.6",
+    "component-closest": "^1.0.1",
+    "component-emitter": "^1.2.1",
+    "component-event": "^0.1.4",
+    "component-events": "^1.0.10",
+    "computed-style": "^0.3.0",
+    "debounce": "^1.0.0",
+    "dom-easy": "^1.1.1",
+    "domify": "^1.4.0",
+    "prop-detect": "^1.0.2"
+  },
+  "browser": {
+    "dom": "dom-easy",
+    "align": "component-align",
+    "classes": "component-classes",
+    "closest": "component-closest",
+    "events": "component-events",
+    "event": "component-event",
+    "emitter": "component-emitter"
+  }
+}
