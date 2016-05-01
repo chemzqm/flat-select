@@ -1,6 +1,6 @@
 {
   "name": "flat-select",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Select ui component build for lightweight & simplicity",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,10 @@
     "type": "git",
     "url": "git+ssh://git@github.com/chemzqm/flat-select.git"
   },
-  "keywords": ["select", "selectable"],
+  "keywords": [
+    "select",
+    "selectable"
+  ],
   "author": "chemzqm@gmail.com",
   "license": "MIT",
   "bugs": {
