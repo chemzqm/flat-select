@@ -182,6 +182,7 @@ Select.prototype.setData = function (data) {
  * @returns {undefined}
  */
 Select.prototype.unbind = function () {
+  _(this.container).remove()
   event.unbind(this.target, 'click', this._targetClick)
   if (this.filter) {
     event.unbind(this.filter, 'keyup', this._onkeyup)
