@@ -188,6 +188,7 @@ Select.prototype.unbind = function () {
     event.unbind(this.filter, 'keyup', this._onkeyup)
     event.unbind(this.filter, 'keydown', this._onkeydown)
   }
+  this.off()
   this.events.unbind()
   this.docEvents.unbind()
 }
