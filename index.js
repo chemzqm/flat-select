@@ -34,6 +34,7 @@ function Select(target, opt) {
   this.pos = opt.pos || 'bl-tl'
   this.target = target
   this.container = domify('<div class="flat-select"></div>')
+  this.isinput = target.children[0].tagName.toLowerCase() == 'input'
   target.parentNode.appendChild(this.container)
   if (this.searchable) {
     var el = domify(template)
@@ -254,13 +255,21 @@ Select.prototype.value = function (val) {
   this._value = val
   this.emit('change', val, old)
   if (val === '') {
-    this.target.children[0].innerHTML = ''
+    this.setText('')
   } else {
     var o = this.search(val)
-    this.target.children[0].innerHTML = o.text
+    this.setText(o.text)
   }
 }
 
+Select.prototype.setText = function (text) {
+  var el = this.target.children[0]
+  if (this.isinput) {
+    el.value = text
+  } else {
+    el.innerHTML = text
+  }
+}
 
 /**
  * Target element click hander
