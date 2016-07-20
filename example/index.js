@@ -5,10 +5,11 @@ var GB2260 = require('./gb2260').GB2260
 var gb = new GB2260(regions)
 var targets = document.querySelectorAll('.select-item')
 
-var provinces = gb.provinces().map(function (division) {
+var provinces = gb.provinces().map(function (division, i) {
   return {
     id: division.code,
-    text: division.name
+    text: division.name,
+    disabled: i == 1
   }
 })
 

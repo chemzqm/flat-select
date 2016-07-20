@@ -49,6 +49,9 @@
 .flat-select .flat-select-close.visible {
   transform: translateX(0px);
 }
+.flat-select-item.disabled {
+  color: #9e9e9e;
+}
 ::-webkit-scrollbar {
     width: 4px;
 }

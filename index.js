@@ -171,6 +171,7 @@ Select.prototype.setData = function (data) {
     var o = data[i]
     el = domify('<div class="flat-select-item" data-index="' +
          i + '">' + o.text + '</div>')
+    if (o.disabled) classes(el).add('disabled')
     fragment.appendChild(el)
   }
   this.container.appendChild(fragment)
@@ -207,6 +208,7 @@ Select.prototype.onclick = function (e) {
     return this.resetFilter()
   }
   if (div) {
+    if (classes(div).has('disabled')) return
     var index = parseInt(div.getAttribute('data-index'), 10)
     var o = this.data[index]
     this.select(o)
