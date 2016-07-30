@@ -62,6 +62,8 @@
     "debounce": "^1.0.0",
     "dom-easy": "^1.1.1",
     "domify": "^1.4.0",
+    "has-touch": "^1.0.1",
+    "iscroll-component": "^3.0.2",
     "prop-detect": "^1.0.2"
   },
   "browser": {
@@ -71,6 +73,7 @@
     "closest": "component-closest",
     "events": "component-events",
     "event": "component-event",
-    "emitter": "component-emitter"
+    "emitter": "component-emitter",
+    "iscroll": "iscroll-component"
   }
 }

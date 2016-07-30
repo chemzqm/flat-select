@@ -11,6 +11,8 @@ var transition = detect.transition
 var closest = require('closest')
 var template = require('./template.html')
 var Emitter = require('emitter')
+var hasTouch = require('has-touch')
+var Iscroll = require('iscroll')
 
 /**
  * Select with target element and option
@@ -33,12 +35,13 @@ function Select(target, opt) {
   this.searchable = opt.searchable || false
   this.pos = opt.pos || 'bl-tl'
   this.target = target
-  this.container = domify('<div class="flat-select"></div>')
+  this.container = domify('<div class="flat-select"><div></div></div>')
+  this.iscroll = new Iscroll(this.container, {handlebar: false})
   this.isinput = target.children[0].tagName.toLowerCase() == 'input'
   target.parentNode.appendChild(this.container)
   if (this.searchable) {
     var el = domify(template)
-    this.container.appendChild(el)
+    this.container.firstElementChild.appendChild(el)
     this.closeEl = el.querySelector('.flat-select-close')
     this.filter = el.children[0]
   }
@@ -119,8 +122,10 @@ Select.prototype.onkeyup = function (e) {
       var div = this.first()
       if (div) {
         var index = parseInt(div.getAttribute('data-index'), 10)
-        var o = this.data[index]
-        this.select(o)
+        if (index) {
+          var o = this.data[index]
+          this.select(o)
+        }
       }
       return
     }
@@ -149,7 +154,7 @@ Select.prototype.onkeyup = function (e) {
  * @returns {Element}
  */
 Select.prototype.first = function () {
-  var els = this.container.querySelectorAll('.flat-select-item')
+  var els = this.container.firstElementChild.querySelectorAll('.flat-select-item')
   for (var i = 0, l = els.length; i < l; i++) {
     var node = els[i]
     if (node.style.display !== 'none') return node
@@ -163,7 +168,7 @@ Select.prototype.first = function () {
  */
 Select.prototype.setData = function (data) {
   this.data = data
-  _(this.container).clean('.flat-select-item')
+  _(this.container.firstElementChild).clean('.flat-select-item')
   if (data.length === 0) return
   var fragment = document.createDocumentFragment()
   var el
@@ -174,7 +179,7 @@ Select.prototype.setData = function (data) {
     if (o.disabled) classes(el).add('disabled')
     fragment.appendChild(el)
   }
-  this.container.appendChild(fragment)
+  this.container.firstElementChild.appendChild(fragment)
 }
 
 /**
@@ -185,6 +190,7 @@ Select.prototype.setData = function (data) {
  */
 Select.prototype.unbind = function () {
   _(this.container).remove()
+  this.iscroll.unbind()
   event.unbind(this.target, 'click', this._targetClick)
   if (this.filter) {
     event.unbind(this.filter, 'keyup', this._onkeyup)
@@ -348,18 +354,27 @@ Select.prototype.show = function () {
   var rect = this.target.getBoundingClientRect()
   var width = rect.width
   var vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+  var vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
   el.style.maxHeight = (vh - rect.bottom - 15) + 'px'
-  el.style.width = width + 'px'
   el.style.display = 'block'
   el.style[transition] = 'none'
-  align(this.target, el, this.pos, {x: -1})
   var self = this
   setTimeout(function () {
+    var w = el.clientWidth
+    if (w < width) el.style.width = width + 'px'
+    if (rect.left + w >= vw) {
+      align(self.target, el, 'br-tr', {x: -1})
+    } else {
+      align(self.target, el, self.pos, {x: -1})
+    }
+  }, 20)
+  setTimeout(function () {
     el.style[transition] = ''
+    self.iscroll.refresh()
     self.aligned = true
     classes(el).remove('hidden')
-    if (self.searchable) self.filter.focus()
-  }, 20)
+    if (self.searchable && !hasTouch) self.filter.focus()
+  }, 40)
 }
 
 /**
@@ -378,6 +393,7 @@ Select.prototype.hide = function () {
   function end() {
     event.unbind(el, transitionEnd, end)
     if (self.visible) return
+    el.style.width = 'auto'
     el.style.display = 'none'
   }
 }

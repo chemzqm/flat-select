@@ -4,7 +4,6 @@
   display: none;
   background-color: #EFEFEF;
   border: 1px solid #e3e3e3;
-  text-indent: 1em;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -14,6 +13,7 @@
 }
 .flat-select .flat-select-item {
   cursor: pointer;
+  padding: 5px 8px;
 }
 .flat-select .flat-select-item + .flat-select-item {
   border-top: 1px solid #e3e3e3;
@@ -30,7 +30,6 @@
   position: relative;
 }
 .flat-select .flat-select-filter > div{
-  text-indent: 12px;
   outline: none;
 }
 .flat-select .flat-select-close {
@@ -51,6 +50,12 @@
 }
 .flat-select-item.disabled {
   color: #9e9e9e;
+}
+.flat-select > div:first-child {
+  position: relative;
+}
+.select-item > div:first-child {
+  text-indent: 9px;
 }
 ::-webkit-scrollbar {
     width: 4px;

@@ -6,7 +6,8 @@
 body {
   font-family: Microsoft YaHei,helvetica,tahoma,arial,SimSun;
   line-height: 1.42857143;
-  padding: 80px;
+  padding: 0;
+  margin: 0;
   color: #333;
   -webkit-touch-callout: none;
 }
@@ -55,5 +56,12 @@ pre {
 }
 .container {
   max-width: 650px;
+  width: 300px;
   margin: 100px auto;
+}
+/* mobile*/
+@media handheld, only screen and (max-width: 767px){
+  .flat-select-filter {
+    display: none;
+  }
 }
