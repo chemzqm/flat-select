@@ -358,23 +358,21 @@ Select.prototype.show = function () {
   el.style.maxHeight = (vh - rect.bottom - 15) + 'px'
   el.style.display = 'block'
   el.style[transition] = 'none'
+  var w = el.clientWidth
+  if (w < width) el.style.width = width + 'px'
+  if (rect.left + w >= vw) {
+    align(this.target, el, 'br-tr', {x: -1})
+  } else {
+    align(this.target, el, this.pos, {x: -1})
+  }
   var self = this
-  setTimeout(function () {
-    var w = el.clientWidth
-    if (w < width) el.style.width = width + 'px'
-    if (rect.left + w >= vw) {
-      align(self.target, el, 'br-tr', {x: -1})
-    } else {
-      align(self.target, el, self.pos, {x: -1})
-    }
-  }, 20)
   setTimeout(function () {
     el.style[transition] = ''
     self.iscroll.refresh()
     self.aligned = true
     classes(el).remove('hidden')
     if (self.searchable && !hasTouch) self.filter.focus()
-  }, 40)
+  }, 30)
 }
 
 /**
