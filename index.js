@@ -257,13 +257,13 @@ Select.prototype.reset = function () {
  * @returns {undefined}
  */
 Select.prototype.value = function (val) {
-  if (typeof val === 'undefined') return this._value
+  if (arguments.length === 0) return this._value
   var old = this._value
   if (this.input) this.input.value = val
   if (old == val) return
   this._value = val
   this.emit('change', val, old)
-  if (val === '') {
+  if (val == '' || val == null) {
     this.setText('')
   } else {
     var o = this.search(val)
