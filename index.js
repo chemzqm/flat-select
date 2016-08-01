@@ -372,6 +372,18 @@ Select.prototype.show = function () {
     self.aligned = true
     classes(el).remove('hidden')
     if (self.searchable && !hasTouch) self.filter.focus()
+    self.setHeight()
+  }, 30)
+}
+
+Select.prototype.setHeight = function () {
+  var vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+  var rect = this.target.getBoundingClientRect()
+  this.container.style.maxHeight = (vh - rect.bottom - 15) + 'px'
+  this.iscroll.refresh()
+  var self = this
+  setTimeout(function () {
+    self.iscroll.refresh()
   }, 30)
 }
 
