@@ -24,6 +24,7 @@ var Iscroll = require('iscroll')
  */
 function Select(target, opt) {
   if (!(this instanceof Select)) return new Select(target, opt)
+  this.viewheight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
   opt = opt || {}
   if (opt.name) {
     var form = closest(target, 'form')
@@ -353,7 +354,7 @@ Select.prototype.show = function () {
   classes(this.target).add('active')
   var rect = this.target.getBoundingClientRect()
   var width = rect.width
-  var vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+  var vh = this.viewheight
   var vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
   el.style.maxHeight = (vh - rect.bottom - 15) + 'px'
   el.style.display = 'block'
@@ -373,17 +374,6 @@ Select.prototype.show = function () {
     classes(el).remove('hidden')
     if (self.searchable && !hasTouch) self.filter.focus()
     self.setHeight()
-  }, 30)
-}
-
-Select.prototype.setHeight = function () {
-  var vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-  var rect = this.target.getBoundingClientRect()
-  this.container.style.maxHeight = (vh - rect.bottom - 15) + 'px'
-  this.iscroll.refresh()
-  var self = this
-  setTimeout(function () {
-    self.iscroll.refresh()
   }, 30)
 }
 
