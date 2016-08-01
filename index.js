@@ -373,7 +373,6 @@ Select.prototype.show = function () {
     self.aligned = true
     classes(el).remove('hidden')
     if (self.searchable && !hasTouch) self.filter.focus()
-    self.setHeight()
   }, 30)
 }
 
