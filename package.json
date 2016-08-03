@@ -1,6 +1,6 @@
 {
   "name": "flat-select",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Select ui component build for lightweight & simplicity",
   "main": "index.js",
   "scripts": {
