@@ -267,7 +267,7 @@ Select.prototype.value = function (val) {
     this.setText('')
   } else {
     var o = this.search(val)
-    this.setText(o.text)
+    if (o) this.setText(o.text)
   }
 }
 
