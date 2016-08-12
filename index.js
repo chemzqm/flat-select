@@ -361,6 +361,7 @@ Select.prototype.show = function () {
   el.style[transition] = 'none'
   var w = el.clientWidth
   if (w < width) el.style.width = width + 'px'
+  el.style.minWidth = w + 'px'
   if (rect.left + w >= vw) {
     align(this.target, el, 'br-tr', {x: -1})
   } else {
@@ -392,7 +393,6 @@ Select.prototype.hide = function () {
   function end() {
     event.unbind(el, transitionEnd, end)
     if (self.visible) return
-    el.style.width = 'auto'
     el.style.display = 'none'
   }
 }
